@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.landing-page {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.enter-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  width: 50%;
+}
+
+.graphic-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.graphic {
+  max-width: 100%;
+  max-height: 100%;
+}

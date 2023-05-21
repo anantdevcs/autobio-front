@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import { Route, Routes } from "react-router-dom"
+import LandingPage from "./landingPage"
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import React, { useState } from 'react';
+import Editor from './editroPage';
+
 
 function App() {
+  const [useremail, setUseremail] = useState('');
+  const [username, setUsername] = useState('');
+  const [userphoto, setUserphoto] = useState('');
+
+  const handleGoogleUserChanged = (user) => {
+    debugger;
+    setUseremail(user.email);
+    setUsername(user.name);
+    setUserphoto(user.photoUrl);
+   
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GoogleOAuthProvider clientId="1560377169-vjbi38h4kh5b8mrtrhmv0rbn1s7djaq0.apps.googleusercontent.com">
+    <Routes>
+      <Route path="/" element={ <LandingPage username={username} userphoto={userphoto}  useremail={useremail} handleGoogleUserChanged={handleGoogleUserChanged} /> } />
+      <Route path="/editor" element={<Editor username={username} userphoto={userphoto}  useremail={useremail} handleGoogleUserChanged={handleGoogleUserChanged} />} />
+    </Routes>
+    </GoogleOAuthProvider>
   );
 }
 
