@@ -1,1 +1,1 @@
-export  const backendUrl = "http://45.93.100.131/"; 
+export  const backendUrl = "https://autobiobackend.com/"; 
