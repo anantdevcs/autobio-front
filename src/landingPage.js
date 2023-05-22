@@ -40,7 +40,7 @@ function LandingPage(props) {
     } 
   };
   if (props.username != '') {
-    navigate('/editor' );
+    navigate('/home' );
   }
   return (
     

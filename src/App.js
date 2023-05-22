@@ -4,7 +4,7 @@ import LandingPage from "./landingPage"
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import React, { useState } from 'react';
 import Editor from './editroPage';
-
+import HomePage from './UserHome'
 
 function App() {
   const [useremail, setUseremail] = useState('');
@@ -23,6 +23,7 @@ function App() {
     <Routes>
       <Route path="/" element={ <LandingPage username={username} userphoto={userphoto}  useremail={useremail} handleGoogleUserChanged={handleGoogleUserChanged} /> } />
       <Route path="/editor" element={<Editor username={username} userphoto={userphoto}  useremail={useremail} handleGoogleUserChanged={handleGoogleUserChanged} />} />
+      <Route path="/home" element={<HomePage username={username} userphoto={userphoto}  useremail={useremail} handleGoogleUserChanged={handleGoogleUserChanged} />} />
     </Routes>
     </GoogleOAuthProvider>
   );
