@@ -6,6 +6,7 @@ import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import axios from 'axios';
+import httpClient from "./httpClient";
 
 import Logo from './AutoBio.png'; // Import the logo image
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -73,38 +74,54 @@ const CustomCard = ({ title, description }) => {
         </Card>
     );
 };
-
+    
 
 // Home page component
-const HomePage = () => {
+const HomePage =  (props) => {
     const [userBios, setUserBios] = useState([]);
+    
+    // useEffect(() => {
+    //   const fetchData = async () => {
+    //     // try {
+    //     //   const response = await fetch(backendUrl + '/getAvailableBios',  {
+    //     //     method: 'GET',
+    //     //     headers: {
+    //     //       'Content-Type': 'application/json',
+    //     //     },
+    //     //   });
+    //     //   setUserBios(response.data);
+    //     // } catch (error) {
+    //     //   console.error(error);
+    //     // }
+    //     // const response = await axios.get(backendUrl + 'a');
+    //     // console.log(response);
+    //     // const response2 = await axios.get(backendUrl + 'b');
+    //     // console.log(response2);
+    //     debugger;
+    //     // const response = await fetch(backendUrl + 'a', {
+    //     //     method: 'GET',
+    //     //     credentials: 'include',
+    //     //   });
+    //     //   const data = await response.json();
+    //     //   console.log(data);
+      
+    //     //   const response2 = await fetch(backendUrl + 'b', {
+    //     //     method: 'GET',
+    //     //     credentials: 'include',
+    //     //   });
+    //     //   const data2 = await response2.json();
+    //     //   console.log(data2);
+        
+    
 
-    useEffect(() => {
-      const fetchData = async () => {
-        // try {
-        //   const response = await fetch(backendUrl + '/getAvailableBios',  {
-        //     method: 'GET',
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //     },
-        //   });
-        //   setUserBios(response.data);
-        // } catch (error) {
-        //   console.error(error);
-        // }
-        const response = await axios.get(backendUrl + 'a');
-        console.log(response);
-        const response2 = await axios.get(backendUrl + 'b');
-        console.log(response2);
-
-      };
+    //   };
   
-      fetchData();
-    }, []);
+    //   fetchData();
 
     return (
         <div style={{ backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
             <Navbar />
+            {props.usercreds}
             <div className="container">
                 <div className="row mt-5">
                     <div className="col-12 text-center">
@@ -119,6 +136,7 @@ const HomePage = () => {
 const NoBiosAvailable = () => {
     return (
       <div className="row mt-4">
+        <button onClick={()=> foo()}>Log out</button>
         <div className="col-6 offset-3">
           <div className="card">
             <div className="card-body">
@@ -133,5 +151,6 @@ const NoBiosAvailable = () => {
       </div>
     );
   }
-
+const foo = () => {
+}
 export default HomePage;

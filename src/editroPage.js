@@ -13,12 +13,10 @@ function Editor(props) {
   const handleLogout = () => {
     // Handle Google logout logic here
     googleLogout();
-    debugger;
     console.log(props.useremail);
     const user_info = {'name': '', 'email': '', 'photoUrl': ''};
     props.handleGoogleUserChanged(user_info);
-    debugger;
-  }
+   }
   if (props.useremail === '') {
     navigate('/' );
   }
@@ -27,6 +25,7 @@ function Editor(props) {
   return (
     <div>
       <AppBar position="static">
+        {props.creds}
         <Toolbar>
           <Typography variant="h6">Navbar</Typography>
         </Toolbar>

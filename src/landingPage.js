@@ -22,8 +22,8 @@ function LandingPage(props) {
 
       if (res.ok) {
         const data = await res.json();
-        const { name, email, photoUrl } = data;
-        const user_info = {'name': name, 'email': email, 'photoUrl': photoUrl};
+        const { name, email, photoUrl,  } = data;
+        const user_info = {'name': name, 'email': email, 'photoUrl': photoUrl, 'creds':response};
         props.handleGoogleUserChanged(user_info);
         
         
