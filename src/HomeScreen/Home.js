@@ -29,8 +29,8 @@ const Home = () => {
     };
 
     fetchData();
-  }, [navigator, userData]);
-
+  }, []);
+  debugger;
   return (
     <div>
       <ResponsiveAppBar userData={userData} />
@@ -56,16 +56,18 @@ const Home = () => {
             startedDate="12/08/19"
             progressPercentage={33}
           />
+          
         ))
       ) : (
         <NoBiosAvailable />
       )}
-
+ {!drafts || drafts.length > 0 ? (
       <Typography variant="h3" gutterBottom style={{ textAlign: 'center', marginTop: 30 }}>
         <Button variant="contained" color="primary" size="large" onClick={()=>handleCreateNewBio(navigator)}>
           Write New Bio
         </Button>
       </Typography>
+ ):(<div></div>)}
     </div>
   );
 };

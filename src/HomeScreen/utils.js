@@ -39,7 +39,6 @@ export const loadLoggedInUserIfAny = () => {
         console.log(response.data);
         let autobioid = response.data.data;
         moveToEditor(autobioid, navigate);
-        debugger;
       })
       .catch((error) => {
         console.error(error);
@@ -78,7 +77,6 @@ export async function getAllAutoBioDrafts()  {
 }
 
 export function moveToEditor(autobioid, navigate)  {
-    debugger;
     navigate('/editor', { state: { autobioid: autobioid }});
 
 }

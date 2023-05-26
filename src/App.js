@@ -7,7 +7,7 @@ import Editor from './editroPage';
 import HomePage from './UserHome'
 import Home from './HomeScreen/Home'
 import EditorModePivot from './EditorPage/EditorModePivot'
-
+import MainEditor from './EditorPage/MainEditor'
 function App() {
 
   
@@ -17,6 +17,7 @@ function App() {
       <Route path="/" element={ <LandingPage /> } />
       <Route path="/home" element={ <Home /> } />
       <Route path="/editor" element={ <EditorModePivot />  }  />
+      <Route path="/mainEditor" element={ <MainEditor />  }  />
       {/* <Route path="/editor" element={<Editor username={username} userphoto={userphoto}  useremail={useremail} usercreds={usercreds} handleGoogleUserChanged={handleGoogleUserChanged} />} />
       <Route path="/home" element={<HomePage username={username} userphoto={userphoto}  useremail={useremail} usercreds={usercreds} handleGoogleUserChanged={handleGoogleUserChanged} />} /> */}
     </Routes>
