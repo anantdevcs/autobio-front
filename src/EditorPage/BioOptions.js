@@ -17,6 +17,7 @@ const BioOptions = (props) => {
   const [selectedOption, setSelectedOption] = useState('');
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
+  
 
   const userData = loadLoggedInUserIfAny();
 

@@ -5,14 +5,16 @@ import 'draft-js/dist/Draft.css';
 import { loadLoggedInUserIfAny } from '../HomeScreen/utils';
 import ResponsiveAppBar from '../HomeScreen/Appbar';
 import { CardContent } from '@mui/material';
-
+import { getoNextQuestionHelper } from './utils'
 
 const MainEditor = () => {
     const userData = loadLoggedInUserIfAny();
 
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     const [text, setText] = useState('');
-
+    const [currQuestion, setCurrQuestion] = useState('');
+    const [currPrompt, setCurrPrompt] = useState('');
+    
     const handleTextChange = (event) => {
         setText(event.target.value);
     };
@@ -50,7 +52,7 @@ const MainEditor = () => {
                     height: '7vh'
                 }}>
                     {/* Card content here */}
-                    <Typography variant="h5" gutterBottom>Question here</Typography>
+                    <Typography variant="h5" gutterBottom>{currQuestion}</Typography>
 
                 </CardContent>
 
@@ -82,7 +84,7 @@ const MainEditor = () => {
                             padding: '6px'
                         }}
                     >
-                        <Typography>hahahah{text}</Typography>
+                        <Typography>{currPrompt}</Typography>
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={1} style={{ display: 'flex', justifyContent: 'center', padding: '16px' }} sx={{
@@ -101,7 +103,7 @@ const MainEditor = () => {
                     >
                         <div>
                             <Button variant="contained" color="primary" sx={{ width: '100%' }}>AutoBiofy</Button>
-                            <Button variant="contained" color="inherit" sx={{ width: '100%', marginTop: '16px' }}>Next Question</Button>
+                            <Button variant="contained" onClick={()=>getoNextQuestionHelper(setCurrQuestion, setCurrPrompt)} color="inherit" sx={{ width: '100%', marginTop: '16px' }}>Next Question</Button>
                             <Typography sx={{ width: '100%', marginTop: '16px', textAlign: 'center' }}>45/2000</Typography>
                         </div>
                     </Box>
