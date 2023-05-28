@@ -7,7 +7,8 @@ const PromptRichTextEditor = ({ content }) => {
 
   useEffect(() => {
     const setText = () => {
-      const text = content; // The text you want to set
+      let text = content; // The text you want to set
+      if (!text) text=''
       const contentState = ContentState.createFromText(text);
       const newEditorState = EditorState.createWithContent(contentState);
       setEditorState(newEditorState);

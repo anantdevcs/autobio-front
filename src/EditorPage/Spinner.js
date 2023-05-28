@@ -17,8 +17,8 @@ export default function FacebookCircularProgress(props) {
               theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
               marginTop: '16px'
           }}
-          size={40}
-          thickness={4}
+          size={60}
+          thickness={3}
           {...props}
           value={100}
         />
