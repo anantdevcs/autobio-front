@@ -24,7 +24,6 @@ export const loadLoggedInUserIfAny = () => {
   };
   
   export  function handleCreateNewBio(navigate) {
-    debugger;
     let email = localStorage.getItem('email');
     let cred = localStorage.getItem('usercreds')
 

@@ -30,7 +30,6 @@ const Home = () => {
 
     fetchData();
   }, []);
-  debugger;
   return (
     <div>
       <ResponsiveAppBar userData={userData} />

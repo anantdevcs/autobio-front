@@ -25,7 +25,6 @@ const styles = {
 
 function NoBiosAvailable() {
   const navigate = useNavigate();
-  debugger;
   return (
     <Card sx={styles.card}>
       <CardContent sx={styles.content}>
