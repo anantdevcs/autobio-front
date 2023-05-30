@@ -1,0 +1,122 @@
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-image: url('vector_background.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #c6cbb2;
+  }
+  
+  .landing-page__autobio {
+    font-family: 'Sacramento';
+  }
+  
+  .landing-page__autobio-text {
+    margin: 0;
+    font-size: 72px;
+    margin-bottom: 0px;
+  }
+  
+  .landing-page__autobio-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    margin-top: 0px;
+    color: #212020;
+  }
+  
+  .landing-page__journey-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    color: #030303;
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
+  
+  .center-align {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .login-button {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #4285F4;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #357AE8;
+  }
+  
+  /* Media Queries for Responsive Styling */
+  
+  /* Small screens */
+  @media (max-width: 768px) {
+    .landing-page__autobio-text {
+      font-size: 48px;
+    }
+  
+    .landing-page__autobio-subtitle {
+      font-size: 12px;
+    }
+  
+    .landing-page__journey-text {
+      font-size: 20px;
+      margin-top: 30px;
+    }
+  
+    .login-button {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+  }
+  
+  /* Medium screens */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .landing-page__autobio-text {
+      font-size: 64px;
+    }
+  
+    .landing-page__autobio-subtitle {
+      font-size: 16px;
+    }
+  
+    .landing-page__journey-text {
+      font-size: 22px;
+      margin-top: 50px;
+    }
+  
+    .login-button {
+      font-size: 18px;
+      padding: 8px 16px;
+    }
+  }
+  
+  /* Large screens and above */
+  @media (min-width: 1025px) {
+    .landing-page__autobio-text {
+      font-size: 96px;
+    }
+  
+    .landing-page__autobio-subtitle {
+      font-size: 18px;
+    }
+  
+    .landing-page__journey-text {
+      font-size: 28px;
+      margin-top: 60px;
+    }
+  
+    .login-button {
+      font-size: 20px;
+      padding: 10px 20px;
+    }
+  }
+  
