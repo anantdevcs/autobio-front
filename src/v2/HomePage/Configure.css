@@ -11,7 +11,7 @@
     border-radius: 15px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
     width: 80%;
-    height: 50%;
+    height: fit-content;
     background-color: #c3ced7;
     padding: 20px;
     margin: 80px auto;
@@ -30,8 +30,8 @@
     /* Adjust styles for even smaller screens */
     .card-showoptions {
         width: 65%;
-        height: 30%;
-        margin: 10px auto;
+        height: fit-content;
+        margin: 15px auto;
     }
 }
 
@@ -43,7 +43,8 @@
 
 .option-box {
     display: 'grid';
-     gridTemplateColumns: '1fr 1fr 1fr'
+     gridTemplateColumns: '1fr 1fr 1fr';
+     margin-bottom:'50px'
     
 }
 .option-title {
@@ -61,5 +62,20 @@
 
 .options {
     margin: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 32px;
 }
+
+.disabledButton {
+    background-color: #a18a8a;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: "DM Sans", sans-serif;
+    font-size: 16px; /* Adjust the font size as needed */
+    padding: 8px 16px; /* Adjust the padding as needed */
+}
+
+.stdbutton:active {
+    /* styles for click effect */
+    background-color: darkblue;
+    /* other click effect styles */
+  }

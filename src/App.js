@@ -11,6 +11,7 @@ import React, { useState } from 'react';
 import LandingPage from './v2/LandingPage/LandingPage';
 import HomeScreen from './v2/HomePage/HomeScreen'
 import Configure from './v2/HomePage/Configure';
+import EditorPage from './v2/EditorPage/EditorPage';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <Route path="/" element={ <LandingPage /> } />
       <Route path='/home' element= {<HomeScreen/>} />
       <Route path='/configure' element= {<Configure/>} />
+      <Route path='/editor' element= {<EditorPage/>} />
       {/* <Route path="/home" element={ <Home /> } />
       <Route path="/editor" element={ <EditorModePivot />  }  />
       <Route path="/mainEditor" element={ <MainEditor />  }  /> */}
