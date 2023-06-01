@@ -1,0 +1,65 @@
+.home-screen-configure {
+    height: 100vh;
+    text-align: center;
+    background-image: url('v2.svg');
+  background-repeat: repeat;
+  background-size: cover;
+  width: 100%;
+}
+.card-showoptions {
+    border: 1px solid #000000;
+    border-radius: 15px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    height: 50%;
+    background-color: #c3ced7;
+    padding: 20px;
+    margin: 80px auto;
+}
+
+@media only screen and (max-width: 768px) {
+    /* Adjust styles for smaller screens */
+    .card-showoptions {
+        width: 70%;
+        height: 40%;
+        margin: 20px auto;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    /* Adjust styles for even smaller screens */
+    .card-showoptions {
+        width: 65%;
+        height: 30%;
+        margin: 10px auto;
+    }
+}
+
+.subtitle {
+    font-family: 'DM Sans';
+    font-size: 26px;
+    margin: 18px;
+}
+
+.option-box {
+    display: 'grid';
+     gridTemplateColumns: '1fr 1fr 1fr'
+    
+}
+.option-title {
+    font-family: 'DM Sans';
+    font-size: 26px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.option-subtitle {
+    font-family: 'DM Sans';
+    font-size: 16px;
+    text-align: left;
+}
+
+.options {
+    margin: 8px;
+    margin-bottom: 16px;
+}

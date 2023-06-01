@@ -10,6 +10,8 @@ import React, { useState } from 'react';
 // import MainEditor from './EditorPage/MainEditor'
 import LandingPage from './v2/LandingPage/LandingPage';
 import HomeScreen from './v2/HomePage/HomeScreen'
+import Configure from './v2/HomePage/Configure';
+
 function App() {
 
   
@@ -18,6 +20,7 @@ function App() {
     <Routes>
       <Route path="/" element={ <LandingPage /> } />
       <Route path='/home' element= {<HomeScreen/>} />
+      <Route path='/configure' element= {<Configure/>} />
       {/* <Route path="/home" element={ <Home /> } />
       <Route path="/editor" element={ <EditorModePivot />  }  />
       <Route path="/mainEditor" element={ <MainEditor />  }  /> */}

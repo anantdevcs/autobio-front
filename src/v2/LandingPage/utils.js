@@ -18,7 +18,7 @@ export async function respondToGoogleAuthSuccessAndGotoHomeHelper(response, navi
           localStorage.setItem("name", name);
           localStorage.setItem("email", email);
           localStorage.setItem("photoUrl", photoUrl);
-          localStorage.setItem("usercreds", response);
+          localStorage.setItem("usercreds", JSON.stringify(response));
           navigator('/home')
          
   
