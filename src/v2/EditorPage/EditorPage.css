@@ -1,0 +1,63 @@
+.editor-screen {
+    height: 100vh;
+    text-align: center;
+    background-image: url('../HomePage/v2.svg');
+  background-repeat: repeat;
+  background-size: cover;
+  width: 100%;
+  
+}
+
+.editorContainer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 10px; 
+    min-height: 50vh;
+    max-height: 60vh;
+    height: 100%;
+}
+
+.typingArea {
+    /* Other styles for the typing area */
+  }
+  
+  .infoArea {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+  }
+  
+  .photoArea {
+    /* Other styles for the photo area */
+    border: 1px solid #000; /* Add a 1px solid black border */
+
+  }
+  
+  .buttonsContainer {
+    /* Other styles for the buttons container */
+  }
+
+  .questionArea {
+    
+    overflow: auto; /* Enable vertical scrolling when text overflows */
+    overflow-wrap: break-word;
+    font-family: 'DM Sans';
+    font-size: 26px;
+    margin: 18px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+    background-color: #c3ced7;
+    padding: 10px;
+    text-align: center;
+    max-height: 15vh;
+  }
+
+.editoruser {
+    background-color: antiquewhite;
+}
+
+.PuzzlePhoto {
+    width: 80%; /* Ensure the image fills the parent's width */
+    height: 100%;
+}
+  
