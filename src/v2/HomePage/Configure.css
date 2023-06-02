@@ -21,7 +21,7 @@
     /* Adjust styles for smaller screens */
     .card-showoptions {
         width: 70%;
-        height: 40%;
+        height: fit-content;
         margin: 20px auto;
     }
 }

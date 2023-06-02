@@ -12,7 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const HomeScreen = () => {
     const [biodata, setBioData] = useState({
         'previous_question': '',
-        'autobioid': ''
+        'autobioid': '',
+        'isConfigured': false
     })
     const navigator = useNavigate();
 
@@ -46,13 +47,15 @@ const HomeScreen = () => {
                 if (jsonData.error === "No bios found for anantdeviitism@gmail.com") {
                     setBioData({
                         'previous_question': '',
-                        'autobioid':''
+                        'autobioid':'',
+                        
                     })
                 }
                  else {
                     setBioData({
                         'previous_question': jsonData['previous_question'],
-                        'autobioid': jsonData['autobioid']
+                        'autobioid': jsonData['autobioid'],
+                        'isConfigured' : jsonData['isConfigured']
                     })
                 }
             } catch (error) {
@@ -69,7 +72,7 @@ const HomeScreen = () => {
             {biodata.autobioid === '' ?
                 <NoPreviousAutobiosCard />
                 :
-                <PreviousBioPresent />
+                <PreviousBioPresent biodata = {biodata} />
             }
         </div>
     );
