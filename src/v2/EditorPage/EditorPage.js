@@ -6,32 +6,90 @@ import { Editor, EditorState } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { margin } from '@mui/system';
-
+import { backendUrl } from '../urlResolver';
+import Spinner from '../CommonComponents/Spinner';
 
 const EditorPage = () => {
     const { state } = useLocation();
     const editorRef = React.useRef(null);
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
+    const [question, SetQuestion] = useState('');
+    const [isLoading, SetLoading] = useState(false);
     const focusEditor = () => {
         editorRef.current.focus();
     };
-
     const handleEditorChange = (newEditorState) => {
         setEditorState(newEditorState);
     };
+
+    const startNewBio = async () => {
+        try {
+            SetLoading(true);
+            const email = localStorage.getItem("email");
+                const usercreds = JSON.parse(localStorage.getItem("usercreds"));
+                const response = await fetch(backendUrl + '/askQuestion', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid }),
+                });
+                const jsonData = await response.json();
+                if (response.status === 401) {
+
+                    navigator('/');
+
+                }
+                SetLoading(false);
+                SetQuestion(jsonData['question'])
+
+            
+        } catch (error) {
+            
+            console.error('Error fetching data:', error);
+        }
+
+    }
+
+    useEffect(() => {
+        const fetchQuestion = async () => {
+            try {
+                SetLoading(true);
+                const email = localStorage.getItem("email");
+                const usercreds = JSON.parse(localStorage.getItem("usercreds"));
+                const response = await fetch(backendUrl + '/askQuestion', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid }),
+                });
+                const jsonData = await response.json();
+                if (response.status === 401) {
+
+                    navigator('/');
+
+                }
+
+                SetQuestion(jsonData['question']);
+                SetLoading(false);
+            } catch (error) {
+
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchQuestion();
+    }, []);
+
 
     debugger;
     return (
         <div className='editor-screen'>
             <Navbar />
             <div className='questionArea'>
-
-                What did you do in your childhood
-                What did you do in your childhood
-                What did you do in your childhood
-                What did you do in your childhood
-                What did you do in your childhood
-                What did you do in your childhood
+{isLoading ?  <Spinner /> :  question }
+               
             </div>
             <div className='editorContainer'>
                 <div className='typingArea'>
@@ -46,18 +104,31 @@ const EditorPage = () => {
                         }}
                     >
                         <Editor ref={editorRef}
-              editorState={editorState}
-              onChange={handleEditorChange}
-              placeholder="bhb" />
+                            editorState={editorState}
+                            onChange={handleEditorChange}
+                            placeholder="bhb" />
                     </div>
                 </div>
                 <div className='infoArea'>
                     <div className='photoArea'>
-                        <img className="PuzzlePhoto" src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*a4u2BjAjsitKkdzc_gQdtg.jpeg"/>
-                        <ImagePixelData />    
+                        {/* <img className="PuzzlePhoto" src="https://i0.wp.com/blog.openart.ai/wp-content/uploads/2023/01/42B6F5C9-8E0D-4B1A-9CD4-2FA9C96C00A4.jpg?resize=400%2C400&ssl=1" /> */}
+                        {/* <ImagePixelData />     */}
                     </div>
-                    <div className='buttonsContainer'></div>
+                    <div className='buttonsContainer'>
+                        <div className='buttonFakeContaainer'>                   
+                         <button className='stdbutton  editorActionButton' onClick={startNewBio} >Skip Question</button>
+                        </div>
+                        <div className='buttonFakeContaainer'>                   
+                         <button className='disabledButton  editorActionButton' >Publish Draft-V1
+                         <div className='announce'>Next draft available after 7 answers</div>
+                         </button>
+                        </div>
+                   
+                        
+                        
+                    </div>
                 </div>
+
 
             </div></div>
     )
@@ -66,42 +137,8 @@ const EditorPage = () => {
 
 
 
-function ImagePixelData() {
-    const imageRef = useRef(null);
-  
-    useEffect(() => {
-      const image = new Image();
-  
-      image.onload = () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = image.width;
-        canvas.height = image.height;
-  
-        const context = canvas.getContext('2d');
-        context.drawImage(image, 0, 0);
-  
-        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-        const pixels = imageData.data;
-  
-        // Access pixel data and perform operations
-        for (let i = 0; i < pixels.length; i += 4) {
-          const red = pixels[i];
-          const green = pixels[i + 1];
-          const blue = pixels[i + 2];
-          const alpha = pixels[i + 3];
-  
-          // Perform operations with the pixel data
-          console.log(`Pixel at index ${i / 4}: R=${red}, G=${green}, B=${blue}, A=${alpha}`);
-        }
-      };
-  
-      // Replace 'https://www.autobiobackend.com/image' with the actual image URL
-      image.src = 'https://www.autobiobackend.com/image';
-    }, []);
-  
-    return <img ref={imageRef} style={{ display: 'none' }} />;
-  }
-  
+
+
 
 
 

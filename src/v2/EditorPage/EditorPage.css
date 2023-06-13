@@ -28,12 +28,15 @@
   
   .photoArea {
     /* Other styles for the photo area */
-    border: 1px solid #000; /* Add a 1px solid black border */
 
   }
   
   .buttonsContainer {
     /* Other styles for the buttons container */
+    margin-top: 20%;
+    display: grid;
+    grid-template-rows: 1fr 1fr ;
+    
   }
 
   .questionArea {
@@ -43,7 +46,6 @@
     font-family: 'DM Sans';
     font-size: 26px;
     margin: 18px;
-    border: 1px solid #000000;
     border-radius: 10px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
     background-color: #c3ced7;
@@ -58,6 +60,41 @@
 
 .PuzzlePhoto {
     width: 80%; /* Ensure the image fills the parent's width */
-    height: 100%;
+    height: 10%;
+}
+
+.editorActionButton {
+  width: 70%;
+  height:70%;
+  margin-top: 16px;
+
+}
+
+.buttonFakeContaainer {
+  text-align: right;
 }
   
+
+@media (max-width: 768px) {
+  .editorContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .PuzzlePhoto {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+  }
+
+  .editorActionButton {
+    width: 100%;
+  }
+
+  .buttonFakeContaainer {
+    text-align: right;
+  }
+}
+
+.announce {
+  font-size: 10px;
+}

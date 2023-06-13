@@ -11,6 +11,10 @@ const Configure = () => {
     const [option, SetOption] = useState('');
     const setSelected = (option) => SetOption(option);
     const navigator = useNavigate();
+    const handleAgeChange = (event) => {
+        setAge(event.target.value);
+    };
+    const [age, setAge] = useState(0);
 
     const addConfisToBioAndgotoEditor = async () => {
         // const autobioid = 
@@ -22,7 +26,7 @@ const Configure = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ 'tokenId': usercreds, 'email': email, 'chosen_length':option, 'autobioid' : autobioid }),
+                    body: JSON.stringify({ 'tokenId': usercreds, 'email': email, 'chosen_length':option, 'autobioid' : autobioid, "age":age }),
                 });
                 const jsonData = await response.json();
                 debugger;
@@ -144,12 +148,15 @@ const Configure = () => {
 
 
                     </div>
+
+                    
                     
                 </div>
-                <button className={option === '' ? 'disabledButton' : 'stdbutton'} disabled={option === ''} onClick={addConfisToBioAndgotoEditor} >continue</button>
+                <input type="text" value={age} onChange={handleAgeChange} placeholder="Enter your age" style={{ margin: '8px' }} />
+                <button className={option === '' || age === 0 || !age ? 'disabledButton' : 'stdbutton'} disabled={option === ''} onClick={addConfisToBioAndgotoEditor} >continue</button>
 
             </div>
-            {state.autobioid}
+            {/* {state.autobioid} */}
 
         </div>
     )
