@@ -23,7 +23,7 @@
   
   .infoArea {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 3fr;
   }
   
   .photoArea {
@@ -35,7 +35,7 @@
     /* Other styles for the buttons container */
     margin-top: 20%;
     display: grid;
-    grid-template-rows: 1fr 1fr ;
+    grid-template-rows: 1fr 1fr 1fr 1fr ;
     
   }
 

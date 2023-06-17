@@ -12,7 +12,7 @@ import LandingPage from './v2/LandingPage/LandingPage';
 import HomeScreen from './v2/HomePage/HomeScreen'
 import Configure from './v2/HomePage/Configure';
 import EditorPage from './v2/EditorPage/EditorPage';
-
+import EditPreview from './v2/EditPreview/EditPreview';
 function App() {
 
   
@@ -23,6 +23,8 @@ function App() {
       <Route path='/home' element= {<HomeScreen/>} />
       <Route path='/configure' element= {<Configure/>} />
       <Route path='/editor' element= {<EditorPage/>} />
+      <Route path='/editPreview' element= {<EditPreview/>} />
+
       {/* <Route path="/home" element={ <Home /> } />
       <Route path="/editor" element={ <EditorModePivot />  }  />
       <Route path="/mainEditor" element={ <MainEditor />  }  /> */}
