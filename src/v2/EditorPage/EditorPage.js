@@ -78,6 +78,7 @@ const EditorPage = () => {
                 // SetQuestion(jsonData['question'])
                 await startNewBio();
                 SetQuestionBefore(questionBefore - 1);
+                setEditorState(EditorState.createEmpty());
 
             
         } catch (error) {
@@ -165,7 +166,7 @@ const EditorPage = () => {
                 }
                 debugger;
                 if (jsonData['status'] === 'machineWriting') {
-
+                    alert("You bio is being written try again after some time!")
                 } else if (jsonData['status'] === 'editPreview') {
                         navigator('/editPreview', { state: { autobioid: state.autobioid }});
 
@@ -240,7 +241,7 @@ const EditorPage = () => {
                         <Editor ref={editorRef}
                             editorState={editorState}
                             onChange={handleEditorChange}
-                            placeholder="bhb" />
+                            placeholder="Put your thoughts here. Autobio will use these to write you bio" />
                     </div>
                 </div>
                 <div className='infoArea'>

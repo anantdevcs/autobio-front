@@ -13,6 +13,7 @@ import HomeScreen from './v2/HomePage/HomeScreen'
 import Configure from './v2/HomePage/Configure';
 import EditorPage from './v2/EditorPage/EditorPage';
 import EditPreview from './v2/EditPreview/EditPreview';
+import PublishedBio from './v2/PublishedBioView/PublishedBio';
 function App() {
 
   
@@ -24,6 +25,7 @@ function App() {
       <Route path='/configure' element= {<Configure/>} />
       <Route path='/editor' element= {<EditorPage/>} />
       <Route path='/editPreview' element= {<EditPreview/>} />
+      <Route path='/autobio' element={<PublishedBio/>} />
 
       {/* <Route path="/home" element={ <Home /> } />
       <Route path="/editor" element={ <EditorModePivot />  }  />

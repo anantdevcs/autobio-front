@@ -16,6 +16,39 @@ const EditPreview = () => {
   const [allChapters, SetAllChapters] = useState([]);
   const [currentChap, SetCurrentChap] = useState('');
 
+  const publish = async() => {
+    try {
+        const email = localStorage.getItem("email");
+            const usercreds = JSON.parse(localStorage.getItem("usercreds"));
+            const response = await fetch(backendUrl + '/publishAction', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid }),
+            });
+            const jsonData = await response.json();
+            if (response.status === 401) {
+                navigator('/');
+            }
+            debugger;
+            if (jsonData['status'] === 'success') {
+                navigator('/autobio',  { state: { autobioid: state.autobioid }})
+                alert("You bio is being written try again after some time!")
+            } else {
+                alert("error")
+            }
+            
+
+            
+        
+    } catch (error) {
+        debugger;
+        console.error('Error fetching data:', error);
+    }
+
+}
+
   useEffect(() => {
     const fetchAutobioPreview = async () => {
       try {
@@ -68,6 +101,7 @@ const EditPreview = () => {
           </div>
           <div className="chapterChooser">
             <Dropdown allChapters = {allChapters} SetCurrentChap = {SetCurrentChap}/>
+            <button className='stdbutton  editorActionButton' style={{height:'60px'}} onClick={publish}> Publish </button>
           </div>
         </div>
         {/* {convertedText} */}
