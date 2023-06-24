@@ -1,0 +1,14 @@
+.mainEditprevCont {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-gap: 20px;
+  }
+  
+  .editor-container {
+    grid-column: 1 / 2;
+  }
+  
+  .chapterChooser {
+    grid-column: 2 / 3;
+  }
+  
