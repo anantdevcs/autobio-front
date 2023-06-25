@@ -5,6 +5,7 @@ import { backendUrl } from '../urlResolver';
 import Editor from './BioEditor';
 import './EditPreview.css'
 
+
 import Navbar from '../CommonComponents/Navbar';
 import Dropdown from './Dropdown';
 const EditPreview = () => {

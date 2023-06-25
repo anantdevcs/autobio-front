@@ -10,6 +10,8 @@ import { backendUrl } from '../urlResolver';
 import Spinner from '../CommonComponents/Spinner';
 import { useNavigate } from 'react-router-dom';
 import EditPreview from '../EditPreview/EditPreview';
+import Modal from '../CommonComponents/CommonModal'
+import { ToastContainer, toast } from 'react-toastify';
 
 const EditorPage = () => {
     const navigator = useNavigate();
@@ -139,6 +141,7 @@ const EditorPage = () => {
                     navigator('/');
 
                 }
+                toast.success("Writing has successfully started! Your bio will be ready in some time")
 
                 
             
@@ -166,7 +169,7 @@ const EditorPage = () => {
                 }
                 debugger;
                 if (jsonData['status'] === 'machineWriting') {
-                    alert("You bio is being written try again after some time!")
+                    toast.info("You bio is being written try again after some time!")
                 } else if (jsonData['status'] === 'editPreview') {
                         navigator('/editPreview', { state: { autobioid: state.autobioid }});
 

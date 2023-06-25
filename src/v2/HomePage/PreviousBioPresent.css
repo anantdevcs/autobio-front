@@ -44,6 +44,8 @@
     font-size: 16px; /* Adjust the font size as needed */
     text-decoration: underline dotted;
     margin:8px;
+    cursor: pointer;
+
   }
   .createNewBioContainer {
     display: flex;

@@ -14,11 +14,14 @@ import Configure from './v2/HomePage/Configure';
 import EditorPage from './v2/EditorPage/EditorPage';
 import EditPreview from './v2/EditPreview/EditPreview';
 import PublishedBio from './v2/PublishedBioView/PublishedBio';
+import { ToastContainer, toast } from 'react-toastify';
+
 function App() {
 
   
   return (
     <GoogleOAuthProvider clientId="1560377169-vjbi38h4kh5b8mrtrhmv0rbn1s7djaq0.apps.googleusercontent.com">
+      <ToastContainer />
     <Routes>
       <Route path="/" element={ <LandingPage /> } />
       <Route path='/home' element= {<HomeScreen/>} />

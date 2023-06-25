@@ -5,7 +5,7 @@ import { backendUrl } from '../urlResolver';
 
 export default function NoPreviousAutobiosCard(){
     const navigator = useNavigate();
-    const startNewBio = async () => {
+     const startNewBio = async () => {
         try {
             const email = localStorage.getItem("email");
             const usercreds = JSON.parse(localStorage.getItem("usercreds"));

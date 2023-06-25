@@ -1,19 +1,18 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Modal = ({ isOpen, onClose }) => {
-  if (!isOpen) {
-    return null; // If the modal is not open, don't render anything
-  }
+const ToastMessage = () => {
+  const showToast = () => {
+    toast.success('This is a toast message!');
+  };
 
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <h2>Popup Modal</h2>
-        <p>This is the content of the modal.</p>
-        <button onClick={onClose}>Close</button>
-      </div>
+    <div>
+      <button onClick={showToast}>Show Toast Message</button>
+      <ToastContainer />
     </div>
   );
 };
 
-export default Modal;
+export default ToastMessage;
