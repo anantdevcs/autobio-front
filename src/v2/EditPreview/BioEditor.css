@@ -43,19 +43,20 @@
 }
 
 .text-editor {
-    height: 75vh;
-    overflow-y: auto;
-  }
+  height: 75vh;
+  overflow-y: auto;
+}
 
-  /* #toolbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-  } */
+.text-editor {
+  width: 90vw;
+  margin: 0 auto; /* Center horizontally */
+}
 
+@media screen and (max-width: 768px) {
   .text-editor {
-    width: 75vw; 
+    width: 95vw;
+    height: 70vh;
   }
- 
+}
+
+

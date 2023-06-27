@@ -8,6 +8,7 @@ import './EditPreview.css'
 
 import Navbar from '../CommonComponents/Navbar';
 import Dropdown from './Dropdown';
+import { toast } from 'react-toastify';
 const EditPreview = () => {
   const [isLoading, setLoading] = useState(false);
   const { state } = useLocation();
@@ -35,7 +36,6 @@ const EditPreview = () => {
             debugger;
             if (jsonData['status'] === 'success') {
                 navigator('/autobio',  { state: { autobioid: state.autobioid }})
-                alert("You bio is being written try again after some time!")
             } else {
                 alert("error")
             }
@@ -49,6 +49,39 @@ const EditPreview = () => {
     }
 
 }
+
+const savePrevieww = async() => {
+  try {
+    const email = localStorage.getItem('email');
+    const usercreds = JSON.parse(localStorage.getItem('usercreds'));
+
+    const response = await fetch(backendUrl + '/savePreviewAction', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        tokenId: usercreds,
+        email: email,
+        autobioid: state.autobioid,
+        chapterText: convertedText,
+        currChap: currentChap
+      }),
+    });
+    const jsonData = await response.json();
+    if (response.status === 401) {
+      navigator('/');
+    }
+    if (jsonData.status === 'done') {
+      toast.success('Preview saved successfully!');
+    } else {
+      toast.error('Error saving preview');
+    }
+  } catch (error) {
+    console.error('Error saving preview:', error);
+  }
+}
+
 
   useEffect(() => {
     const fetchAutobioPreview = async () => {
@@ -97,20 +130,24 @@ const EditPreview = () => {
       <div className="home-screen">
         <Navbar />
         <div className="mainEditprevCont">
+        <div className="chapterChooser">
+            <Dropdown allChapters={allChapters} SetCurrentChap={SetCurrentChap} />
+            <div className="actionButtons">
+              <button className="stdbutton topbarbutton" onClick={publish}>Publish</button>
+              <button className="stdbutton topbarbutton" onClick={savePrevieww}>Save</button>
+            </div>
+          </div>
           <div className="editor-container">
-            <Editor placeholder={"Select a chapter "} setHtmlValue={setHtmlValue} editorText = {getEditorText()} />
+            <Editor placeholder={"Select a chapter "} setHtmlValue={setHtmlValue} editorText={getEditorText()} />
           </div>
-          <div className="chapterChooser">
-            <Dropdown allChapters = {allChapters} SetCurrentChap = {SetCurrentChap}/>
-            <button className='stdbutton  editorActionButton' style={{height:'60px'}} onClick={publish}> Publish </button>
-          </div>
+          
         </div>
         {/* {convertedText} */}
         {/* {allChapters.map(item => item)} */}
-        {currentChap}
       </div>
     </div>
   );
+  
 };
 
 export default EditPreview;

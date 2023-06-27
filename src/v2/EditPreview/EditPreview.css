@@ -1,14 +1,33 @@
 .mainEditprevCont {
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-gap: 20px;
+  display: grid;
+  grid-template-rows: 1fr 9fr;
+  grid-gap: 0px;
+}
+
+.editor-container {
+  width: 100%;
+}
+
+.chapterChooser {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin: 8px;
+  width: 75vw;
+  margin: 0 auto; /* Center horizontally */
+}
+
+@media screen and (max-width: 768px) {
+  .mainEditprevCont {
+    display: block;
   }
-  
-  .editor-container {
-    grid-column: 1 / 2;
-  }
-  
+
   .chapterChooser {
-    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+    margin: 8px auto;
   }
+}
+
   
