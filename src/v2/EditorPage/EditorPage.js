@@ -169,7 +169,7 @@ const EditorPage = () => {
                 }
                 debugger;
                 if (jsonData['status'] === 'machineWriting') {
-                    toast.info("You bio is being written try again after some time!")
+                    toast.info("Your bio is being written! This can take between 10 min to 30mins. Please check again later")
                 } else if (jsonData['status'] === 'editPreview') {
                         navigator('/editPreview', { state: { autobioid: state.autobioid }});
 
@@ -261,11 +261,11 @@ const EditorPage = () => {
                         </div>
                         <div className='buttonFakeContaainer'>                   
                          <button className='stdbutton  editorActionButton' onClick={triggerWrite} >Write new draft
-                         <div className='announce'>Next draft available after {questionBefore} answers</div>
+                         {/* <div className='announce'>Next draft available after {questionBefore} answers</div> */}
                          </button>
                         </div>
                         <div className='buttonFakeContaainer'>                   
-                         <button className='stdbutton  editorActionButton' onClick={showDrafts} >See Completed Drafts</button>
+                         <button className='stdbutton  editorActionButton' onClick={showDrafts} >See Written Draft</button>
                         </div>
                    
                         
