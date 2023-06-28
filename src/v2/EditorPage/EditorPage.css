@@ -98,3 +98,9 @@
 .announce {
   font-size: 10px;
 }
+.grayedOut {
+  opacity: 0.5;
+  pointer-events: none; /* Disable pointer events to prevent clicks */
+  cursor: not-allowed; /* Change the cursor to indicate the button is disabled */
+  /* Add any other styles to visually indicate the button is disabled */
+}

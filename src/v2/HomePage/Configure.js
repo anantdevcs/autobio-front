@@ -152,7 +152,7 @@ const Configure = () => {
                     
                     
                 </div>
-                <input type="text" value={age} onChange={handleAgeChange} placeholder="Enter your age" style={{ margin: '8px' }} />
+                <input type="text"  onChange={handleAgeChange} placeholder="Enter your age" style={{ margin: '8px' }} />
                 <button className={option === '' || age === 0 || !age ? 'disabledButton' : 'stdbutton'} disabled={option === ''} onClick={addConfisToBioAndgotoEditor} >continue</button>
 
             </div>

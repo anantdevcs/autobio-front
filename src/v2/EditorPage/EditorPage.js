@@ -21,6 +21,8 @@ const EditorPage = () => {
     const [question, SetQuestion] = useState('');
     const [isLoading, SetLoading] = useState(false);
     const [questionBefore, SetQuestionBefore] = useState(-1);
+    const [enableShowDraft, setEnableShowDraft] = useState(false);
+    const [enableWrite, setEnableWrite] = useState(false);
     const focusEditor = () => {
         editorRef.current.focus();
     };
@@ -32,119 +34,122 @@ const EditorPage = () => {
         try {
             SetLoading(true);
             const email = localStorage.getItem("email");
-                const usercreds = JSON.parse(localStorage.getItem("usercreds"));
-                const response = await fetch(backendUrl + '/askQuestion', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid }),
-                });
-                const jsonData = await response.json();
-                if (response.status === 401) {
+            const usercreds = JSON.parse(localStorage.getItem("usercreds"));
+            const response = await fetch(backendUrl + '/askQuestion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid }),
+            });
+            const jsonData = await response.json();
+            if (response.status === 401) {
 
-                    navigator('/');
+                navigator('/');
 
-                }
-                SetLoading(false);
-                SetQuestion(jsonData['question'])
+            }
+            SetLoading(false);
+            SetQuestion(jsonData['question'])
 
-            
+
+
         } catch (error) {
-            
+
             console.error('Error fetching data:', error);
         }
 
     }
 
-    const acceptAnswer  = async () => {
+    const acceptAnswer = async () => {
         try {
             SetLoading(true);
             const email = localStorage.getItem("email");
-                const usercreds = JSON.parse(localStorage.getItem("usercreds"));
-                const prompt_ans_user = editorState.getCurrentContent().getPlainText();
-                const response = await fetch(backendUrl + '/acceptAnswer', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid, answer: prompt_ans_user, question:question }),
-                });
-                const jsonData = await response.json();
-                if (response.status === 401) {
+            const usercreds = JSON.parse(localStorage.getItem("usercreds"));
+            const prompt_ans_user = editorState.getCurrentContent().getPlainText();
+            const response = await fetch(backendUrl + '/acceptAnswer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid, answer: prompt_ans_user, question: question }),
+            });
+            const jsonData = await response.json();
+            if (response.status === 401) {
 
-                    navigator('/');
+                navigator('/');
 
-                }
-                SetLoading(false);
-                // SetQuestion(jsonData['question'])
-                await startNewBio();
-                SetQuestionBefore(questionBefore - 1);
-                setEditorState(EditorState.createEmpty());
+            }
+            SetLoading(false);
+            // SetQuestion(jsonData['question'])
+            await startNewBio();
+            SetQuestionBefore(Math.max(0, questionBefore - 1));
+            setEditorState(EditorState.createEmpty());
 
-            
+
         } catch (error) {
-            
+
             console.error('Error fetching data:', error);
         }
 
     }
-    
+
     const getAllInfoForThisAutobio = async () => {
         // questinons left, writing state
 
         try {
             const email = localStorage.getItem("email");
-                const usercreds = JSON.parse(localStorage.getItem("usercreds"));
-                const prompt_ans_user = editorState.getCurrentContent().getPlainText();
-                const response = await fetch(backendUrl + '/getEditorDisplayInfo', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid, answer: prompt_ans_user, question:question }),
-                });
-                const jsonData = await response.json();
-                if (response.status === 401) {
+            const usercreds = JSON.parse(localStorage.getItem("usercreds"));
+            const prompt_ans_user = editorState.getCurrentContent().getPlainText();
+            const response = await fetch(backendUrl + '/getEditorDisplayInfo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid, answer: prompt_ans_user, question: question }),
+            });
+            const jsonData = await response.json();
+            if (response.status === 401) {
 
-                    navigator('/');
+                navigator('/');
 
-                }
-                SetQuestionBefore(jsonData['questionsBeforePreviousSneakPeak']);
+            }
+            SetQuestionBefore(jsonData['questionsBeforePreviousSneakPeak']);
 
-                
-            
+
+
         } catch (error) {
-            
+
             console.error('Error fetching data:', error);
         }
 
 
     }
 
-    const triggerWrite = async() => {
+    const triggerWrite = async () => {
         try {
             const email = localStorage.getItem("email");
-                const usercreds = JSON.parse(localStorage.getItem("usercreds"));
-                const prompt_ans_user = editorState.getCurrentContent().getPlainText();
-                const response = await fetch(backendUrl + '/triggerWrite', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid, answer: prompt_ans_user, question:question }),
-                });
-                const jsonData = await response.json();
-                debugger;
-                if (response.status === 401) {
+            const usercreds = JSON.parse(localStorage.getItem("usercreds"));
+            const prompt_ans_user = editorState.getCurrentContent().getPlainText();
+            const response = await fetch(backendUrl + '/triggerWrite', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid, answer: prompt_ans_user, question: question }),
+            });
+            const jsonData = await response.json();
+            debugger;
+            if (response.status === 401) {
 
-                    navigator('/');
+                navigator('/');
 
-                }
-                toast.success("Writing has successfully started! Your bio will be ready in some time")
+            }
+            toast.success("Writing has successfully started! Your bio will be ready in some time");
+            setEnableShowDraft(true);
+            SetQuestionBefore(6);
 
-                
-            
+
+
         } catch (error) {
             debugger;
             console.error('Error fetching data:', error);
@@ -152,33 +157,76 @@ const EditorPage = () => {
 
     }
 
-    const showDrafts = async() => {
+    const showDrafts = async () => {
         try {
             const email = localStorage.getItem("email");
-                const usercreds = JSON.parse(localStorage.getItem("usercreds"));
-                const response = await fetch(backendUrl + '/getDraftsStatus', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid }),
-                });
-                const jsonData = await response.json();
-                if (response.status === 401) {
-                    navigator('/');
-                }
-                debugger;
-                if (jsonData['status'] === 'machineWriting') {
-                    toast.info("Your bio is being written! This can take between 10 min to 30mins. Please check again later")
-                } else if (jsonData['status'] === 'editPreview') {
-                        navigator('/editPreview', { state: { autobioid: state.autobioid }});
+            const usercreds = JSON.parse(localStorage.getItem("usercreds"));
+            const response = await fetch(backendUrl + '/getDraftsStatus', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid }),
+            });
+            const jsonData = await response.json();
+            if (response.status === 401) {
+                navigator('/');
+            }
+            debugger;
+            if (jsonData['status'] === 'machineWriting') {
+                toast.info("Your bio is being written! This can take between 10 min to 30mins. Please check again later");
+                setEnableShowDraft(true);
+            } else if (jsonData['status'] === 'editPreview') {
+                navigator('/editPreview', { state: { autobioid: state.autobioid } });
 
-                } else if (jsonData['status'] === 'completed') {
+                setEnableShowDraft(true);
 
-                }
+            } else if (jsonData['status'] === 'completed') {
+                setEnableShowDraft(true);
+            } else if (jsonData['status'] === 'not_started_yet') {
 
-                
-            
+            }
+
+
+
+        } catch (error) {
+            debugger;
+            console.error('Error fetching data:', error);
+        }
+
+    }
+
+    const loadDraftWritingSTatusOnLoad = async () => {
+        try {
+            const email = localStorage.getItem("email");
+            const usercreds = JSON.parse(localStorage.getItem("usercreds"));
+            const response = await fetch(backendUrl + '/getDraftsStatus', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 'tokenId': usercreds, 'email': email, autobioid: state.autobioid }),
+            });
+            const jsonData = await response.json();
+            if (response.status === 401) {
+                navigator('/');
+            }
+            debugger;
+            if (jsonData['status'] === 'machineWriting') {
+                toast.info("Your bio is being written! This can take between 10 min to 30mins. Please check again later");
+                setEnableShowDraft(true);
+            } else if (jsonData['status'] === 'editPreview') {
+
+                setEnableShowDraft(true);
+
+            } else if (jsonData['status'] === 'completed') {
+                setEnableShowDraft(true);
+            } else if (jsonData['status'] === 'not_started_yet') {
+
+            }
+
+
+
         } catch (error) {
             debugger;
             console.error('Error fetching data:', error);
@@ -209,6 +257,7 @@ const EditorPage = () => {
                 SetQuestion(jsonData['question']);
                 SetLoading(false);
                 await getAllInfoForThisAutobio();
+                await loadDraftWritingSTatusOnLoad();
             } catch (error) {
 
                 console.error('Error fetching data:', error);
@@ -219,15 +268,15 @@ const EditorPage = () => {
     }, []);
 
 
- 
-   
+
+
 
     return (
         <div className='editor-screen'>
             <Navbar />
             <div className='questionArea'>
-{isLoading ?  <Spinner /> :  question }
-               
+                {isLoading ? <Spinner /> : question}
+
             </div>
             <div className='editorContainer'>
                 <div className='typingArea'>
@@ -253,23 +302,25 @@ const EditorPage = () => {
                         {/* <ImagePixelData />     */}
                     </div>
                     <div className='buttonsContainer'>
-                        <div className='buttonFakeContaainer'>                   
-                         <button className='stdbutton  editorActionButton' onClick={startNewBio} >Skip Question</button>
+                        <div className='buttonFakeContaainer'>
+                            <button className='stdbutton  editorActionButton' onClick={startNewBio} >Skip Question</button>
                         </div>
-                        <div className='buttonFakeContaainer'>                   
-                         <button className='stdbutton  editorActionButton' onClick={acceptAnswer} >Submit Answer</button>
+                        <div className='buttonFakeContaainer'>
+                            <button className='stdbutton  editorActionButton' onClick={acceptAnswer} >Submit Answer</button>
                         </div>
-                        <div className='buttonFakeContaainer'>                   
-                         <button className='stdbutton  editorActionButton' onClick={triggerWrite} >Write new draft
-                         {/* <div className='announce'>Next draft available after {questionBefore} answers</div> */}
-                         </button>
+                        <div className='buttonFakeContaainer'>
+                            <button className={`stdbutton editorActionButton  ${questionBefore > 0 ? 'grayedOut' : ''} `} disabled={questionBefore > 0} onClick={triggerWrite} >Write new draft
+                                <div className='announce'>Next draft available after {questionBefore} answers</div>
+                            </button>
                         </div>
-                        <div className='buttonFakeContaainer'>                   
-                         <button className='stdbutton  editorActionButton' onClick={showDrafts} >See Written Draft</button>
+                        <div className='buttonFakeContaainer'>
+                            <button className={`stdbutton editorActionButton  ${!enableShowDraft ? 'grayedOut' : ''}`} onClick={showDrafts} disabled={!enableShowDraft}>
+                                See Written Draft
+                            </button>
                         </div>
-                   
-                        
-                        
+
+
+
                     </div>
                 </div>
 
