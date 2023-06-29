@@ -5,14 +5,15 @@ import Navbar from '../CommonComponents/Navbar';
 import { Editor, EditorState } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import React, { useState, useEffect, useRef } from 'react';
-import { margin } from '@mui/system';
+import { height, margin, maxHeight } from '@mui/system';
 import { backendUrl } from '../urlResolver';
 import Spinner from '../CommonComponents/Spinner';
 import { useNavigate } from 'react-router-dom';
 import EditPreview from '../EditPreview/EditPreview';
 import Modal from '../CommonComponents/CommonModal'
 import { ToastContainer, toast } from 'react-toastify';
-
+import ProgressBar from '../CommonComponents/ProgressBar';
+const MIN_WORDS = 500;
 const EditorPage = () => {
     const navigator = useNavigate();
     const { state } = useLocation();
@@ -23,11 +24,13 @@ const EditorPage = () => {
     const [questionBefore, SetQuestionBefore] = useState(-1);
     const [enableShowDraft, setEnableShowDraft] = useState(false);
     const [enableWrite, setEnableWrite] = useState(false);
+    const [WLProgress, SetWLProgress] = useState(0);
     const focusEditor = () => {
         editorRef.current.focus();
     };
     const handleEditorChange = (newEditorState) => {
         setEditorState(newEditorState);
+        SetWLProgress(Math.min(100, parseInt(newEditorState.getCurrentContent().getPlainText().length / MIN_WORDS * 100)));
     };
 
     const startNewBio = async () => {
@@ -279,34 +282,32 @@ const EditorPage = () => {
 
             </div>
             <div className='editorContainer'>
-                <div className='typingArea'>
-                    <div className='typingDraft'
-                        style={{
-                            height: '95%',
-                            backgroundColor: '#EAF0FF',
-                            border: '1px dotted blue',
-                            borderRadius: '8px',
-                            padding: '6px',
-                            margin: '6px'
-                        }}
-                    >
-                        <Editor ref={editorRef}
+                <div className="typingArea">
+                    <div className="typingDraft">
+                        <Editor
+                            ref={editorRef}
                             editorState={editorState}
                             onChange={handleEditorChange}
-                            placeholder="Put your thoughts here. Autobio will use these to write you bio" />
+                            placeholder="Put your thoughts here. Autobio will use these to write your bio"
+                        />
                     </div>
                 </div>
                 <div className='infoArea'>
                     <div className='photoArea'>
                         {/* <img className="PuzzlePhoto" src="https://i0.wp.com/blog.openart.ai/wp-content/uploads/2023/01/42B6F5C9-8E0D-4B1A-9CD4-2FA9C96C00A4.jpg?resize=400%2C400&ssl=1" /> */}
                         {/* <ImagePixelData />     */}
+
                     </div>
+
                     <div className='buttonsContainer'>
                         <div className='buttonFakeContaainer'>
                             <button className='stdbutton  editorActionButton' onClick={startNewBio} >Skip Question</button>
                         </div>
-                        <div className='buttonFakeContaainer'>
-                            <button className='stdbutton  editorActionButton' onClick={acceptAnswer} >Submit Answer</button>
+                        <div className="buttonFakeContaainer accommodate">
+                            <ProgressBar className="stdbutton editorActionButton" percent={WLProgress} />
+                            <button className={`stdbutton editorActionButton  ${WLProgress < 70 ? 'grayedOut' : ''} `} disabled={WLProgress < 70} onClick={acceptAnswer}>
+                                Submit Answer
+                            </button>
                         </div>
                         <div className='buttonFakeContaainer'>
                             <button className={`stdbutton editorActionButton  ${questionBefore > 0 ? 'grayedOut' : ''} `} disabled={questionBefore > 0} onClick={triggerWrite} >Write new draft

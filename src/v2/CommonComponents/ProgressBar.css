@@ -1,0 +1,28 @@
+.progress-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .progress-bar__svg {
+    /* transform: rotate(-90deg); */
+  }
+  
+  .progress-bar__background {
+    fill: #e8e8e8;
+  }
+  
+  .progress-bar__fill {
+    fill: none;
+    stroke: #007bff;
+    stroke-width: 8;
+    transition: stroke-dashoffset 0.3s ease-in-out;
+  }
+  
+  .progress-bar__text {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    fill: #333333;
+  }
+  

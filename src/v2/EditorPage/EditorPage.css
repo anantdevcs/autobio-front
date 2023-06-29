@@ -23,7 +23,7 @@
   
   .infoArea {
     display: grid;
-    grid-template-rows: 1fr 3fr;
+    grid-template-rows: 1fr 5fr;
   }
   
   .photoArea {
@@ -104,3 +104,63 @@
   cursor: not-allowed; /* Change the cursor to indicate the button is disabled */
   /* Add any other styles to visually indicate the button is disabled */
 }
+
+.accommodate {
+  display: flex;
+  align-items: center;
+}
+
+.accommodate .progress-bar {
+  flex: 1;
+  margin-right: 10px; /* Adjust the spacing between the progress bar and button */
+} 
+.typingDraft {
+  background-color: #EAF0FF;
+  border: 1px dotted blue;
+  border-radius: 8px;
+  padding: 6px;
+  margin: 6px;
+  height: 65vh;
+  overflow: auto;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.typingDraft .DraftEditor-root {
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Media query for screen widths up to 768px */
+@media screen and (max-width: 768px) {
+  .typingDraft {
+    background-color: #EAF0FF;
+    border: 1px dotted blue;
+    border-radius: 8px;
+    padding: 6px;
+    margin: 6px;
+    height: 23vh;
+    overflow: auto;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+  
+  .typingDraft .DraftEditor-root {
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+  }
+  .photoArea {
+    /* display: none; */
+  }
+  .infoArea {
+    display: grid;
+    grid-template-rows: 0fr 1fr;
+  }
+  
+}
+
+
