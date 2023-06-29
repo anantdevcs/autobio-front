@@ -13,7 +13,8 @@ import EditPreview from '../EditPreview/EditPreview';
 import Modal from '../CommonComponents/CommonModal'
 import { ToastContainer, toast } from 'react-toastify';
 import ProgressBar from '../CommonComponents/ProgressBar';
-const MIN_WORDS = 500;
+import LinearProgress from '../CommonComponents/LinearProgress';
+const MIN_WORDS = 800;
 const EditorPage = () => {
     const navigator = useNavigate();
     const { state } = useLocation();
@@ -25,6 +26,7 @@ const EditorPage = () => {
     const [enableShowDraft, setEnableShowDraft] = useState(false);
     const [enableWrite, setEnableWrite] = useState(false);
     const [WLProgress, SetWLProgress] = useState(0);
+    const [fullWritingCompletionPercent, SetWritngCOmpletionPercent] = useState(0);
     const focusEditor = () => {
         editorRef.current.focus();
     };
@@ -86,8 +88,12 @@ const EditorPage = () => {
             // SetQuestion(jsonData['question'])
             await startNewBio();
             SetQuestionBefore(Math.max(0, questionBefore - 1));
+            
+            
             setEditorState(EditorState.createEmpty());
+            await getAllInfoForThisAutobio();
 
+            
 
         } catch (error) {
 
@@ -117,6 +123,7 @@ const EditorPage = () => {
 
             }
             SetQuestionBefore(jsonData['questionsBeforePreviousSneakPeak']);
+            SetWritngCOmpletionPercent(jsonData['completed_percent']) 
 
 
 
@@ -276,7 +283,10 @@ const EditorPage = () => {
 
     return (
         <div className='editor-screen'>
+
             <Navbar />
+            <LinearProgress percent={fullWritingCompletionPercent}/>
+
             <div className='questionArea'>
                 {isLoading ? <Spinner /> : question}
 
