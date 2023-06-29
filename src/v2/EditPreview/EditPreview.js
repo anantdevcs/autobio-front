@@ -4,11 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { backendUrl } from '../urlResolver';
 import Editor from './BioEditor';
 import './EditPreview.css'
-
+import PopupChooser from '../CommonComponents/PopupChooser';
 
 import Navbar from '../CommonComponents/Navbar';
 import Dropdown from './Dropdown';
 import { toast } from 'react-toastify';
+import { height } from '@mui/system';
 const EditPreview = () => {
   const [isLoading, setLoading] = useState(false);
   const { state } = useLocation();
@@ -131,7 +132,8 @@ const savePrevieww = async() => {
         <Navbar />
         <div className="mainEditprevCont">
         <div className="chapterChooser">
-            <Dropdown allChapters={allChapters} SetCurrentChap={SetCurrentChap} />
+        <PopupChooser style = {{height:'222px'}} options={allChapters} onSelect={(option)=> {SetCurrentChap(option)}}/>
+
             <div className="actionButtons">
               <button className="stdbutton topbarbutton" onClick={publish}>Publish</button>
               <button className="stdbutton topbarbutton" onClick={savePrevieww}>Save</button>

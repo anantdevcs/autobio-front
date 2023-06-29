@@ -9,10 +9,12 @@ const Dropdown = (props) => {
 
 
   const handleToggle = () => {
+    debugger
     setIsOpen(!isOpen);
   };
 
   const handleOptionSelect = (option) => {
+    debugger;
     setSelectedOption(option);
     setIsOpen(false);
     props.SetCurrentChap(option);
